@@ -1,4 +1,6 @@
-> **Live tool:** [apify.com/teamsasuke/app-reviews-scraper](https://apify.com/teamsasuke/app-reviews-scraper) — published on the Apify Store with pay-per-result pricing.
+[![tests](https://github.com/lmy-dawson/app-reviews-scraper/actions/workflows/tests.yml/badge.svg)](https://github.com/lmy-dawson/app-reviews-scraper/actions/workflows/tests.yml)
+
+> **Live tool:** [apify.com/teamsasuke/app-reviews-scraper](https://apify.com/teamsasuke/app-reviews-scraper) — running in production on the Apify Store.
 > Source code by [Benjamin-David Dawson](https://github.com/lmy-dawson). The rest of this README is the user guide shown on the Store.
 
 <details>
@@ -10,6 +12,8 @@
 - `src/google.py` — Google Play reviews per language via `google-play-scraper`.
 - `src/inputs.py` — accepts store URLs or IDs from either store and normalises them.
 - Both stores are mapped to one output schema, so the result is a single table.
+
+**Run the tests:** `pip install -r requirements.txt pytest && pytest`
 
 **Run locally**
 
