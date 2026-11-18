@@ -1,0 +1,86 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Reviews",
+      "description": "One row per review, the columns worth reading on screen.",
+      "transformation": {
+        "fields": [
+          "store",
+          "appName",
+          "country",
+          "rating",
+          "title",
+          "text",
+          "date",
+          "userName",
+          "developerResponse"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "store": { "label": "Store", "format": "text" },
+          "appName": { "label": "App", "format": "text" },
+          "country": { "label": "Country", "format": "text" },
+          "rating": { "label": "Stars", "format": "number" },
+          "title": { "label": "Title", "format": "text" },
+          "text": { "label": "Review", "format": "text" },
+          "date": { "label": "Date", "format": "date" },
+          "userName": { "label": "User", "format": "text" },
+          "developerResponse": { "label": "Developer reply", "format": "text" }
+        }
+      }
+    },
+    "export": {
+      "title": "Spreadsheet export",
+      "description": "Every field, one row per review. This is the view the CSV download uses.",
+      "transformation": {
+        "fields": [
+          "store",
+          "appId",
+          "appName",
+          "appUrl",
+          "country",
+          "language",
+          "reviewId",
+          "userName",
+          "rating",
+          "title",
+          "text",
+          "date",
+          "appVersion",
+          "isEdited",
+          "thumbsUpCount",
+          "developerResponse",
+          "developerResponseDate",
+          "scrapedAt"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "store": { "label": "Store", "format": "text" },
+          "appId": { "label": "App ID", "format": "text" },
+          "appName": { "label": "App", "format": "text" },
+          "appUrl": { "label": "App URL", "format": "link" },
+          "country": { "label": "Country", "format": "text" },
+          "language": { "label": "Language", "format": "text" },
+          "reviewId": { "label": "Review ID", "format": "text" },
+          "userName": { "label": "User", "format": "text" },
+          "rating": { "label": "Stars", "format": "number" },
+          "title": { "label": "Title", "format": "text" },
+          "text": { "label": "Review", "format": "text" },
+          "date": { "label": "Date", "format": "date" },
+          "appVersion": { "label": "App version", "format": "text" },
+          "isEdited": { "label": "Edited", "format": "boolean" },
+          "thumbsUpCount": { "label": "Thumbs up", "format": "number" },
+          "developerResponse": { "label": "Developer reply", "format": "text" },
+          "developerResponseDate": { "label": "Reply date", "format": "date" },
+          "scrapedAt": { "label": "Scraped at", "format": "date" }
+        }
+      }
+    }
+  }
+}

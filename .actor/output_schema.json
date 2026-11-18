@@ -1,0 +1,37 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "App reviews output",
+  "description": "One row per review in the default dataset, plus app details and a list of apps that returned nothing in the key-value store.",
+  "properties": {
+    "reviews": {
+      "type": "string",
+      "title": "Reviews (JSON)",
+      "description": "Every review with all fields.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "reviewsCsv": {
+      "type": "string",
+      "title": "Reviews (CSV)",
+      "description": "One row per review for a spreadsheet.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?format=csv&view=export"
+    },
+    "datasetView": {
+      "type": "string",
+      "title": "Browse results",
+      "description": "Open the results table in Apify Console.",
+      "template": "{{links.consoleDatasetUrl}}"
+    },
+    "appDetails": {
+      "type": "string",
+      "title": "App details (JSON)",
+      "description": "Name, developer, average rating, rating count, version and category for every app scraped. Not billed.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/APP_DETAILS"
+    },
+    "appsWithoutReviews": {
+      "type": "string",
+      "title": "Apps that returned nothing (JSON)",
+      "description": "Inputs that could not be parsed, were not found in the store, or had no reviews matching your filters, each with a reason. Not billed.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/APPS_WITHOUT_REVIEWS"
+    }
+  }
+}

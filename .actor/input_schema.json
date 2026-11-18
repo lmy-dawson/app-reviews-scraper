@@ -1,0 +1,83 @@
+{
+  "title": "App Store & Google Play Reviews Scraper",
+  "description": "Paste app links or IDs from either store. Every other field has a sensible default.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "apps": {
+      "title": "Apps",
+      "type": "array",
+      "description": "App Store or Google Play links, or bare IDs, one per line. App Store: a link such as https://apps.apple.com/us/app/whatsapp-messenger/id310633997 or just the number 310633997. Google Play: a link such as https://play.google.com/store/apps/details?id=com.whatsapp or just the package name com.whatsapp. Mix both stores freely.",
+      "editor": "stringList",
+      "prefill": [
+        "https://apps.apple.com/us/app/whatsapp-messenger/id310633997",
+        "com.whatsapp"
+      ],
+      "default": [
+        "https://apps.apple.com/us/app/whatsapp-messenger/id310633997",
+        "com.whatsapp"
+      ]
+    },
+    "maxReviewsPerApp": {
+      "title": "Max reviews per app",
+      "type": "integer",
+      "description": "Stop after this many reviews for each app in each country. The App Store serves 20 reviews per request and Google Play a few hundred, so a large number simply takes longer. There is no hard ceiling: 10,000 reviews from one App Store listing works.",
+      "default": 500,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "countries": {
+      "title": "Countries",
+      "type": "array",
+      "description": "Two-letter storefront codes such as us, gb, de, in, br, jp. Each app is scraped once per country. A country inside an App Store link (apps.apple.com/gb/...) overrides this list for that app.",
+      "editor": "stringList",
+      "default": ["us"],
+      "prefill": ["us"]
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Two-letter language code such as en, de, pt, ja. Google Play keeps reviews per language, so this decides which Google Play reviews you get. Reviews come back in whatever language they were written.",
+      "editor": "textfield",
+      "default": "en",
+      "prefill": "en"
+    },
+    "sort": {
+      "title": "Sort order",
+      "type": "string",
+      "description": "Which reviews come first. 'Newest first' is the right choice for monitoring and for the 'Only reviews since' filter. 'Lowest rating first' is the fastest way to collect complaints.",
+      "editor": "select",
+      "enum": ["newest", "most_helpful", "highest_rating", "lowest_rating"],
+      "enumTitles": ["Newest first", "Most helpful first", "Highest rating first", "Lowest rating first"],
+      "default": "newest"
+    },
+    "ratings": {
+      "title": "Only these star ratings",
+      "type": "array",
+      "description": "Leave empty for all ratings. Pick 1 and 2 to collect only critical reviews, or 5 for testimonials.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": ["1", "2", "3", "4", "5"],
+        "enumTitles": ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"]
+      },
+      "default": []
+    },
+    "reviewsSince": {
+      "title": "Only reviews since",
+      "type": "string",
+      "description": "A date such as 2026-01-01. Older reviews are skipped. With 'Newest first' the scraper stops the moment it reaches older reviews, which keeps runs short and cheap.",
+      "editor": "datepicker",
+      "default": ""
+    },
+    "proxyConfiguration": {
+      "title": "Proxy",
+      "type": "object",
+      "description": "Apple rate-limits its review pages per address, so App Store requests go through Apify's shared datacenter proxy by default and move to a fresh address whenever a limit is hit. That proxy is included in every Apify plan at no extra charge. Residential proxies are never needed. Google Play is read directly unless you supply your own proxy URLs.",
+      "editor": "proxy",
+      "default": { "useApifyProxy": true },
+      "prefill": { "useApifyProxy": true }
+    }
+  },
+  "required": ["apps"]
+}
